@@ -7,7 +7,8 @@ course_id INT,
 food_category_id INT,
 recipe_name VARCHAR(255),
 recipe_description TEXT NOT NULL,
-prep_time TIME
+prep_time TIME,
+kcal INT
 );
 
 DROP TABLE IF EXISTS COURSE;

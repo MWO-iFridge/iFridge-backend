@@ -19,4 +19,5 @@ public class IngredientService {
     public List<Ingredient> getAllIngredients() {
         return ingredientRepository.findAll();
     }
+
 }

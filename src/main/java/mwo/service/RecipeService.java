@@ -1,9 +1,7 @@
 package mwo.service;
 
 import mwo.entity.Course;
-import mwo.entity.Quantity;
 import mwo.entity.Recipe;
-import mwo.entity.Ingredient;
 import mwo.repository.RecipeRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +22,8 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    public Recipe getRecipeById(Long id) {
-        return recipeRepository.findById(id).get();
+    public Optional<Recipe> getRecipeById(Long id) {
+        return recipeRepository.findById(id);
     }
 
     public List<Recipe> getRecipeByCourse(Course course, List<Recipe> recipes){

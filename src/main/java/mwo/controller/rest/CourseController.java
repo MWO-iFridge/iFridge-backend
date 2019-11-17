@@ -1,9 +1,7 @@
 package mwo.controller.rest;
 
 import mwo.entity.Course;
-import mwo.entity.Recipe;
 import mwo.service.CourseService;
-import mwo.service.RecipeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +16,7 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/course")
     public List<Course> getAllCourses() {
         return courseService.getAllCourses();
     }

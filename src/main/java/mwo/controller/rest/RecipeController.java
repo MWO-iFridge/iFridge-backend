@@ -31,7 +31,7 @@ public class RecipeController {
         this.courseService = courseService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/recipe")
     private List<Recipe> getAllRecipes() {
         return recipeService.getAllRecipes();
     }
@@ -48,9 +48,9 @@ public class RecipeController {
     }
 
     public List<List<Recipe>> getNutritionPlansForOneDay(Long kcal, List<Ingredient> ingredients) {
-        Course dinner = courseService.getCourseById(Course.DINNER_ID);
-        Course breakfast = courseService.getCourseById(Course.BREAKFAST_ID);
-        Course supper = courseService.getCourseById(Course.SUPPER_ID);
+        Course dinner = courseService.getCourseById(Course.DINNER_ID).orElseGet(Course::new);
+        Course breakfast = courseService.getCourseById(Course.BREAKFAST_ID).orElseGet(Course::new);
+        Course supper = courseService.getCourseById(Course.SUPPER_ID).orElseGet(Course::new);
         List<Long> ingredientIdsInRecipe = ingredients
                 .stream()
                 .map(Ingredient::getId)
@@ -111,7 +111,7 @@ public class RecipeController {
     }
 
     private List<Recipe> chooseRecipesForGivenCourse(Course course, List<Recipe> recipes) {
-        for(Recipe recipe  : recipes){
+        for(Recipe recipe : recipes){
             if (!Objects.equals(recipe.getCourseId(), course.getId())){
                 recipes.remove(recipe);
             }

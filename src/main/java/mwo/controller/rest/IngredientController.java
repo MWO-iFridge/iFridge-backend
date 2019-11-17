@@ -17,7 +17,7 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/ingredient")
     public List<Ingredient> getAllIngredients() {
         return ingredientService.getAllIngredients();
     }

@@ -1,13 +1,11 @@
 package mwo.service;
 
-import java.util.List;
-
 import mwo.entity.Course;
-import mwo.entity.Ingredient;
 import mwo.repository.CourseRepository;
-import mwo.repository.IngredientRepository;
-
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseService {
@@ -22,8 +20,7 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    public Course getCourseById(Long id){
-        return courseRepository.findById(id).get();
+    public Optional<Course> getCourseById(Long id){
+        return courseRepository.findById(id);
     }
 }

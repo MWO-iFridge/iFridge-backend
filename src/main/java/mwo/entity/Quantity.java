@@ -28,44 +28,4 @@ public class Quantity {
 
     @NotNull
     private Float ingredientQuantity;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getRecipeId() {
-        return recipeId;
-    }
-
-    public void setRecipeId(Long recipeId) {
-        this.recipeId = recipeId;
-    }
-
-    public Long getIngredientId() {
-        return ingredientId;
-    }
-
-    public void setIngredientId(Long ingredientId) {
-        this.ingredientId = ingredientId;
-    }
-
-    public Long getIngredientUomId() {
-        return ingredientUomId;
-    }
-
-    public void setIngredientUomId(Long ingredientUomId) {
-        this.ingredientUomId = ingredientUomId;
-    }
-
-    public Float getIngredientQuantity() {
-        return ingredientQuantity;
-    }
-
-    public void setIngredientQuantity(Float ingredientQuantity) {
-        this.ingredientQuantity = ingredientQuantity;
-    }
 }

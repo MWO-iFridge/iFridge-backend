@@ -1,9 +1,6 @@
 package mwo.service;
 
-import mwo.entity.Ingredient;
 import mwo.entity.Quantity;
-import mwo.entity.Recipe;
-import mwo.repository.IngredientRepository;
 import mwo.repository.QuantityRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +12,6 @@ import java.util.Optional;
 public class QuantityService {
 
     private QuantityRepository quantityRepository;
-    private  IngredientService ingredientService;
 
     public QuantityService(QuantityRepository quantityRepository) {
         this.quantityRepository = quantityRepository;
@@ -25,9 +21,8 @@ public class QuantityService {
         return quantityRepository.findAll();
     }
 
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    private Quantity findQuantityById(Long id) {
-        return quantityRepository.findById(id).get();
+    private Optional<Quantity> findQuantityById(Long id) {
+        return quantityRepository.findById(id);
     }
 
     private List<Quantity> findQuantityByRecipe(Long id) {
@@ -37,7 +32,7 @@ public class QuantityService {
     public List<Long> getAllIngredientsFromRecipeByRecipeId(Long id){
         List<Quantity> quantities = findQuantityByRecipe(id);
         List<Long> ingredientIds = new LinkedList<>();
-        for(Quantity quantity : quantities){
+        for(Quantity quantity : quantities) {
                 ingredientIds.add(quantity.getIngredientId());
         }
         return ingredientIds;

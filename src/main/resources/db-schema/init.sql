@@ -1,6 +1,6 @@
 -- create db
 DROP DATABASE IF EXISTS ifridge;
-CREATE DATABASE ifridge;
+CREATE DATABASE ifridge DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 USE ifridge;
 

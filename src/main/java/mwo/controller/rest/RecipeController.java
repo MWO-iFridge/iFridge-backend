@@ -112,7 +112,7 @@ public class RecipeController {
 
     private List<Recipe> chooseRecipesForGivenCourse(Course course, List<Recipe> recipes) {
         for(Recipe recipe : recipes){
-            if (!Objects.equals(recipe.getCourseId(), course.getId())){
+            if (!Objects.equals(recipe.getCourse().getId(), course.getId())){
                 recipes.remove(recipe);
             }
         }

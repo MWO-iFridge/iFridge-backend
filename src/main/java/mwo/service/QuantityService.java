@@ -33,7 +33,7 @@ public class QuantityService {
         List<Quantity> quantities = findQuantityByRecipe(id);
         List<Long> ingredientIds = new LinkedList<>();
         for(Quantity quantity : quantities) {
-                ingredientIds.add(quantity.getIngredientId());
+                ingredientIds.add(quantity.getIngredient().getId());
         }
         return ingredientIds;
     }

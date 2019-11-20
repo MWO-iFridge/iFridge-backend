@@ -4,9 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.List;
+import java.time.LocalTime;
 
 @Entity
 @Data
@@ -14,16 +12,21 @@ public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
+
+    private Course course;
+
+    private FoodCategory foodCategory;
 
     @NotNull
-    @Size(min = 1, max = 255)
     private String recipeName;
 
-    private Long courseId;
-    private Long foodCategoryId;
     @NotNull
     private String recipeDescription;
-    private Float prepTime;
-    private Long kcal;
+
+    @NotNull
+    private LocalTime prepTime;
+
+    @NotNull
+    private long kcal;
 }

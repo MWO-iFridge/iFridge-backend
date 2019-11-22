@@ -85,7 +85,11 @@ INSERT INTO ingredient (name) VALUES
     ('Pomidory z puszki'),
     ('Oliwa z oliwek'),
     ('Hummus'),
-    ('Ogórek');
+    ('Ogórek'),
+    ('Makaron'),
+    ('Pesto bazyliowe'),
+    ('Tofu naturalne'),
+    ('Parmezan');
 
 
 INSERT INTO unit_of_measurement (name) VALUES
@@ -149,3 +153,25 @@ INSERT INTO quantity (recipe_id, ingredient_id, ingredient_uom_id, ingredient_qu
     (3, 12, 1, 90),
     (3, 13, 1, 70);
 
+--Spaghetti z tofu bazyliowym
+INSERT INTO recipe (course_id, food_category_id, recipe_name, recipe_description, prep_time, kcal) VALUES
+    (1, 1, 'Spaghetti z tofu bazyliowym', 'Odświeżona osłona włoskiego specjału z dodatkiem tofu.', '30', 550);
+
+INSERT INTO recipe_step (recipe_id, step_number, step_description) VALUES
+    (4,1, 'Ugotować makaron według zaleceń na opakowaniu'),
+    (4,2, 'Pokroić tofu w drobną kostkę, wymieszać z pesto bazyliowym i odstawić na kilka minut'),
+    (4,3, 'Rozgrzać oliwę na patelni'),
+    (4,4, 'Drobno posiekać cebulę, dodać na patelnię i podsmażyć'),
+    (4,5, 'Dodać tofu na patelnię i smażyć razem z cebulą'),
+    (4,6, 'Wlać na patelnię pomidory z puszki, całość przyprawić i wymieszać'),
+    (4,7, 'Poddusić aż do zgęstnienia pomidorowego sosu'),
+    (4,8, 'Makaron i zawartosć patelni wyłożyć na talerz i dodać potarty parmezan');
+
+INSERT INTO quantity (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
+    (4, 14, 1, 100),
+    (4, 15, 1, 30),
+    (4, 16, 1, 100),
+    (4, 17, 1, 30),
+    (4, 8, 1, 60),
+    (4, 10, 1, 200),
+    (4, 11, 1, 10);

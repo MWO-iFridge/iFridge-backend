@@ -83,8 +83,9 @@ INSERT INTO ingredient (name) VALUES
     ('Cebula biała'),
     ('Papryka czerwona'),
     ('Pomidory z puszki'),
-    ('Oliwa z oliwek');
-
+    ('Oliwa z oliwek'),
+    ('Hummus'),
+    ('Ogórek');
 
 
 INSERT INTO unit_of_measurement (name) VALUES
@@ -132,4 +133,19 @@ INSERT INTO quantity (recipe_id, ingredient_id, ingredient_uom_id, ingredient_qu
     (2, 11, 1, 10),
     (2, 1, 4, 3);
 
+--Bułki z hummusem
+
+INSERT INTO recipe (course_id, food_category_id, recipe_name, recipe_description, prep_time, kcal) VALUES
+    (2,1, 'Bułki z hummusem', 'Lekkie i pożywne śniadanie dla fascynatów pieczywa z pastą', '5', 300);
+
+INSERT INTO recipe_step (recipe_id, step_number, step_description) VALUES 
+    (3,1, 'Bułki przekroić wzdłuż na pół'),
+    (3,2, 'W każdej powstałej parze jedną z przekrojonych części od wewnętrznej strony posmarować hummusem'),
+    (3,3, 'Ogórek obrać i pokroić w talarki, a następnie ułożyć na hummusie'),
+    (3,4 'Bułkę złożyc w całość');
+
+INSERT INTO quantity (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
+    (3, 6, 4 ,2),
+    (3, 12, 1, 90),
+    (3, 13, 1, 70);
 

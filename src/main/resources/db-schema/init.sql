@@ -79,7 +79,21 @@ INSERT INTO ingredient (name) VALUES
     ('Kurczak'),
     ('Bazylia'),
     ('Bułka grahamka'),
-    ('Mleko');
+    ('Mleko'),
+    ('Cebula biała'),
+    ('Papryka czerwona'),
+    ('Pomidory z puszki'),
+    ('Oliwa z oliwek');
+
+
+
+INSERT INTO unit_of_measurement (name) VALUES
+    ('g'),
+    ('ml'),
+    ('kg'),
+    ('szt');
+
+--Jajecznica
 
 INSERT INTO recipe (course_id, food_category_id, recipe_name, recipe_description, prep_time, kcal) VALUES
     (2, 2,'Jajecznica na szynce', 'Tradycyjna jajecznica na szynce, dobra na pożywne i wartościowe śniadanie.', '15', 250 );
@@ -91,14 +105,31 @@ INSERT INTO recipe_step (recipe_id, step_number, step_description) VALUES
     (1, 4, 'Pokroić szynkę w kostkę i wrzucić na patelnię'),
     (1, 5, 'Zalać szynkę jajkami i mieszać do ścięcia jajecznicy według uznania');
 
-INSERT INTO unit_of_measurement (name) VALUES
-    ('g'),
-    ('ml'),
-    ('kg'),
-    ('szt');
 
 INSERT INTO quantity (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
     (1, 1, 4, 2),
     (1, 2, 1, 5),
     (1, 3, 1, 5),
     (1, 7, 2, 1);
+
+--Szakszuka
+
+INSERT INTO recipe (course_id, food_category_id, recipe_name, recipe_description, prep_time, kcal) VALUES
+    (2, 1,'Szakszuka', 'Pyszne danie z Bliskiego Wschodu idealne na śniadanie.', '20', 400  );
+
+INSERT INTO recipe_step (recipe_id, step_number, step_description) VALUES
+    (2,1, 'Na patelni rozgrzać oliwę'),
+    (2,2, 'Cebulę posiekać w kosteczkę i wrzucić na patelnię'),
+    (2,3, 'Paprykę pokroić na paski i na pół, i wrzucić na patelnię. Chwilę dusić'),
+    (2,4, 'Wlać pomidory z puszki i przyprawić, wymieszać'),
+    (2,5, 'Z warzyw na patelni uformować pierścień, do dziury na środku wbić 3 jajka'),
+    (2,6, 'Patelnię przykryć i dusić aż do ścięcia jajka');
+
+INSERT INTO quantity (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
+    (2, 8, 1, 60),
+    (2, 9, 1, 80),
+    (2, 10, 1, 200),
+    (2, 11, 1, 10),
+    (2, 1, 4, 3);
+
+

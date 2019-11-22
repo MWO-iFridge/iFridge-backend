@@ -89,7 +89,11 @@ INSERT INTO ingredient (name) VALUES
     ('Makaron'),
     ('Pesto bazyliowe'),
     ('Tofu naturalne'),
-    ('Parmezan');
+    ('Parmezan'),
+    ('Cebula czerwona'),
+    ('Fasola czerwona z puszki'),
+    ('Kukurydza z puszki'),
+    ('Ryż');
 
 
 INSERT INTO unit_of_measurement (name) VALUES
@@ -175,3 +179,27 @@ INSERT INTO quantity (recipe_id, ingredient_id, ingredient_uom_id, ingredient_qu
     (4, 8, 1, 60),
     (4, 10, 1, 200),
     (4, 11, 1, 10);
+
+--Weganskie burrito
+
+INSERT INTO recipe (course_id, food_category_id, recipe_name, recipe_description, prep_time, kcal) VALUES
+    (1,1, 'Wegańskie burrito', 'Popularne meksykańskie burrito w odsłonie bezmięsnej', '30', 570);
+
+INSERT INTO recipe_step (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
+    (5, 1, 'Ryż ugotować według zaleceń na opakowaniu'),
+    (5, 2, 'Rozgrzać oliwę na patelni'),
+    (5, 3, 'Drobno posiekać cebulę i dodać na patelnię'),
+    (5, 4, 'Pokroić paprykę w małe paski i dodać na patelnię. Chwilę podsmażyć'),
+    (5, 5, 'Wlać na patelnię pomidory z puszki'),
+    (5, 6, 'Poddusić do zgęstnienia'),
+    (5, 7, 'Dodać na patelnię fasolę oraz kukurydzę, przyprawić i wymieszać'),
+    (5, 8, 'Ryż i zawartość patelni wyłożyć na talerz');
+
+INSERT INTO quantity (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
+    (5, 21, 1, 100),
+    (5, 18, 1, 60),
+    (5, 19, 1, 200),
+    (5, 20, 1, 60),
+    (5, 9, 1 , 100),
+    (5, 10, 1, 200),
+    (5, 11, 1, 10);

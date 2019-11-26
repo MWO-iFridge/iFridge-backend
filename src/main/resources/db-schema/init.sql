@@ -5,6 +5,13 @@
     USE ifridge;
 
     -- create tables
+    
+    CREATE TABLE USER (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(255),
+        password VARCHAR(255)
+    );
+    
     CREATE TABLE RECIPE (
         id INT AUTO_INCREMENT PRIMARY KEY,
         course_id INT,
@@ -62,6 +69,10 @@
     ALTER TABLE RECIPE_STEP ADD FOREIGN KEY (recipe_id) REFERENCES RECIPE(id);
 
     -- first inserts
+    INSERT INTO USER (username, password) VALUES
+        ('root','rootpass'),
+        ('user','userpass');
+        
     INSERT INTO COURSE(name) VALUES
         ('Obiad'),
         ('Śniadanie'),

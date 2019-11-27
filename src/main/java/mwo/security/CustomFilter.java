@@ -34,26 +34,27 @@ public class CustomFilter extends OncePerRequestFilter {
 		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 				throws ServletException, IOException {
 
-			String requestToken = request.getHeader("Bearer");
-
 			String username = null;
-			String token = null;
-		
-			if (requestToken != null) {
+			String requestHeader = request.getHeader("Authorization");
+	        String requestToken = null;
+	     
+			if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
 				try {
-					username = tokenHelper.getUsernameFromToken(token);
+					requestToken = requestHeader.substring(7);
+					username = tokenHelper.getUsernameFromToken(requestToken);
+					
 				} catch (Exception e) {
-					//handle no header
+					System.out.println("Invalid token");
 				}
 			}
 
 			// Once we get the token validate it.
-			if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-
+			if (requestToken != null && username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+				
 				UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
-
-				if (tokenHelper.validateToken(token, userDetails)) {
-
+				
+				if (tokenHelper.validateToken(requestToken, userDetails)) {
+					
 					UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
 							userDetails, null, userDetails.getAuthorities());
 					usernamePasswordAuthenticationToken

@@ -6,7 +6,7 @@
 
     -- create tables
     
-    CREATE TABLE USER (
+    CREATE TABLE user (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(255),
         password VARCHAR(255)
@@ -69,7 +69,7 @@
     ALTER TABLE RECIPE_STEP ADD FOREIGN KEY (recipe_id) REFERENCES RECIPE(id);
 
     -- first inserts
-    INSERT INTO USER (username, password) VALUES
+    INSERT INTO user (username, password) VALUES
         ('root','rootpass'),
         ('user','userpass');
         

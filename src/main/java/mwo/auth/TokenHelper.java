@@ -58,6 +58,7 @@ public class TokenHelper implements Serializable{
 			    .setSubject(username)   
 			    .signWith(getKey())      
 			    .compact();   
+
 		return jws;
 	}
 	

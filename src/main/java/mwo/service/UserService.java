@@ -15,11 +15,7 @@ public class UserService {
 	    public UserService(UserRepository userRepository) {
 	        this.userRepository = userRepository;
 	    }
-	    
-	   // public Optional<User> getUserById(Long id){
-	 //       return userRepository.findById(id);
-	   // }
-	    
+
 	    public User getUserByUsername(String username){
 	        return userRepository.findByUsername(username);
 	    }

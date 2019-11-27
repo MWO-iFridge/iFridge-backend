@@ -9,16 +9,16 @@ public class TokenResponse implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final String token;
+	private final String auth_token;
 	private final String username;
 	
-	public TokenResponse(String token, String username) {
-		this.token = token;
+	public TokenResponse(String auth_token, String username) {
+		this.auth_token = auth_token;
 		this.username = username;
 	}
 	
-	public String getToken() {
-		return this.token;
+	public String getAuth_token() {
+		return this.auth_token;
 	}
 
 	public String getUsername() {

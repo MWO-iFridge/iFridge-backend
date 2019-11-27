@@ -1,7 +1,8 @@
 package mwo.controller.rest;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import mwo.service.UserService;
 
 
 @RestController
-//@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
 
 	@Autowired
@@ -25,7 +26,7 @@ public class AuthController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping({ "/hidden" })
+	@RequestMapping(value="/hidden", method=RequestMethod.GET, produces="text/plain")
 	public String firstPage() {
 		return "Hello World";
 	}
@@ -39,6 +40,7 @@ public class AuthController {
 		if (username != null && !username.isEmpty()) {
 			token = tokenHelper.generateToken(username);
 		}
+		
 		
 		return new TokenResponse(token,username);
 	}

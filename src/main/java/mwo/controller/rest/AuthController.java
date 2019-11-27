@@ -32,30 +32,28 @@ public class AuthController {
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public TokenResponse createAuthenticationToken(@RequestBody AuthRequest authRequest){
-		// debug
-		System.out.println("User authentication "+ authRequest.getUsername() + " " +  authRequest.getPassword());
-		
-		Boolean auth = authenticate(authRequest.getUsername(), authRequest.getPassword());
-		User user = userService.getUserByUsername(authRequest.getUsername());
+	
+		String username = authenticate(authRequest.getUsername(), authRequest.getPassword());
 		String token = "";
-	    String username = "";
-		if (auth) {
-			System.out.println("User properly authenticated.");
-			token = tokenHelper.generateToken(user);
-			username =  user.getUsername();
+	    
+		if (username != null && !username.isEmpty()) {
+			token = tokenHelper.generateToken(username);
 		}
-		System.out.println("token granted: "+token);
+		
 		return new TokenResponse(token,username);
 	}
 
-	private Boolean authenticate(String username, String password) { // configure authentication manager
+	private String authenticate(String username, String password) { // configure authentication manager
 		User user = userService.getUserByUsername(username);
-		System.out.println("Credentials provided:"+ username+ " "+ password);
-		System.out.println("Credentials in db:"+user.getUsername() + " " +user.getPassword());
+		
+	    if (user == null) {
+	    	return "";
+	    }
+	    
 		if (password.equals(user.getPassword())) {
-			return true;
+			return user.getUsername();
 		}else {
-			return false;
+			return "";
 		}
 
 	}

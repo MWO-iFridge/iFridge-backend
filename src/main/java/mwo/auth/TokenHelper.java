@@ -6,6 +6,7 @@ import java.security.Key;
 import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -39,9 +40,22 @@ public class TokenHelper implements Serializable{
 	    return subject;
 	}
 	
-	public String generateToken(User user) {
+	public Boolean validateToken(String token, UserDetails user) { //validate exp date
+		try {
+			if(getUsernameFromToken(token).equals(user.getUsername())) {
+				return true;
+			}else {
+				return false;
+			}
+		}catch(Exception e) {
+				return false;
+		}
+		
+	}
+	
+	public String generateToken(String username) {
 		String jws = Jwts.builder()
-			    .setSubject(user.getUsername())   
+			    .setSubject(username)   
 			    .signWith(getKey())      
 			    .compact();   
 		return jws;

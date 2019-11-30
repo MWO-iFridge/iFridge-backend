@@ -18,6 +18,15 @@ public class UserService {
 
 	    public User getUserByUsername(String username){
 	        return userRepository.findByUsername(username);
-	    }
+		}
+		
+		public void addUser(User user){
+			User oldUser = getUserByUsername(user.getUsername());
+			oldUser.setWeight(user.getWeight());
+			oldUser.setHeight(user.getHeight());
+			oldUser.setDiet(user.getDiet());
+			oldUser.setMale(user.getMale());
+			userRepository.save(oldUser);
+		}
 	        
 }

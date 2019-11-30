@@ -9,7 +9,13 @@
     CREATE TABLE user (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(255),
-        password VARCHAR(255)
+        password VARCHAR(255),
+        name VARCHAR(30),
+        surname VARCHAR(40),
+        weight FLOAT DEFAULT 0.0,
+        height FLOAT DEFAULT 0.0,
+        male BOOLEAN DEFAULT false,
+        diet TINYINT DEFAULT 2 -- (0 - utrzymanie obecnej wagi, 1 - Zrzucenie sadełka, 2 - Budowa mięśni)
     );
     
     CREATE TABLE RECIPE (
@@ -69,8 +75,9 @@
     ALTER TABLE RECIPE_STEP ADD FOREIGN KEY (recipe_id) REFERENCES RECIPE(id);
 
     -- first inserts
-    INSERT INTO user (username, password) VALUES
-        ('root','rootpass'),
+    INSERT INTO user (username, password, name, surname, weight, height, male, diet) VALUES
+        ('root','rootpass', 'Piotr', 'Test', '85.5', '186.5', true, '2');
+    INSERT INTO user (username,password) VALUES
         ('user','userpass');
         
     INSERT INTO COURSE(name) VALUES

@@ -100,6 +100,11 @@ public class RecipeController {
         return recipes.get(randomIndex);
     }
 
+    @GetMapping(value = "/random")
+    public Recipe chooseRandomRecipe() {
+        return chooseRandomRecipe(getAllRecipes());
+    }
+
     private Long recommendedKcalForDinner(Long kcal) {
         return kcal/2;
     }

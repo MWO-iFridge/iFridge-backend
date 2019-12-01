@@ -1,5 +1,6 @@
 package mwo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ public class RecipeStep {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @JsonIgnore
     @ManyToOne
     private Recipe recipe;
 

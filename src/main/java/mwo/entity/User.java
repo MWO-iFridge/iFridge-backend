@@ -56,10 +56,21 @@ public class User {
 		return username;
 	}
 	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 	public String getPassword() {
 		return password;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	
 	public String getName(){
 		return name;
 	}

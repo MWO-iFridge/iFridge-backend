@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import mwo.auth.AuthRequest;
 import mwo.entity.User;
 import mwo.profile_edit.NewPasswordForm;
+import mwo.profile_edit.NewUserDTO;
+import mwo.profile_edit.RegisterResponse;
 import mwo.service.UserService;
 
 @RestController
@@ -43,5 +45,26 @@ public class UserController {
         }    
         return isPasswordCorrect;
     }
+    
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public RegisterResponse newUser(@RequestBody NewUserDTO newUser) {
+		
+		if (userService.getUserByUsername(newUser.getUsername()) != null) {
+			return new RegisterResponse("0","Username taken. Choose a different one.");
+		}
+	
+		if (newUser.isEmpty()) {
+			return new RegisterResponse("0","A field is empty. Make sure to fill in all boxes.");
+		}
+		
+		User user = userService.newUser(newUser);
+		
+		if (user == null) {
+			return new RegisterResponse("0","Server failed while creating a user.");
+		}else {
+			return new RegisterResponse("1","User created successfully.");
+		}
+	}
+
 
 }

@@ -6,7 +6,7 @@
 
     <groupId>MWO</groupId>
     <artifactId>iFridge</artifactId>
-    <version>1.01-SNAPSHOT</version>
+    <version>1.02-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>

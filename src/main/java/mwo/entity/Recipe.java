@@ -2,10 +2,13 @@ package mwo.entity;
 
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -25,10 +28,18 @@ public class Recipe {
     @ManyToOne
     private FoodCategory foodCategory;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(name = "recipe_id")
     private List<Quantity> quantityList;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn(name = "recipe_id")
     private List<RecipeStep> recipeStepList;
 
     @NotNull

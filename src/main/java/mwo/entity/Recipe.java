@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -39,7 +38,7 @@ public class Recipe {
     private String recipeDescription;
 
     @NotNull
-    private LocalTime prepTime;
+    private Integer prepTime;
 
     @NotNull
     private long kcal;

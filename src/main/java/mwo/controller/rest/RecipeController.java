@@ -1,5 +1,6 @@
 package mwo.controller.rest;
 
+import mwo.dto.RecipeDto;
 import mwo.entity.Course;
 import mwo.entity.Ingredient;
 import mwo.entity.Recipe;
@@ -101,8 +102,19 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/random")
-    public Recipe chooseRandomRecipe() {
-        return chooseRandomRecipe(getAllRecipes());
+    public RecipeDto chooseRandomRecipe() {
+        RecipeDto recipeDto = new RecipeDto();
+        Recipe recipe = chooseRandomRecipe(getAllRecipes());
+
+        recipeDto.setId(recipe.getId());
+        recipeDto.setCourse(recipe.getCourse().getName());
+        recipeDto.setFoodCategory(recipe.getFoodCategory().getName());
+        recipeDto.setKcal(recipe.getKcal());
+        recipeDto.setPrepTime(recipe.getPrepTime());
+        recipeDto.setRecipeDescription(recipe.getRecipeDescription());
+        recipeDto.setRecipeName(recipe.getRecipeName());
+
+        return recipeDto;
     }
 
     private Long recommendedKcalForDinner(Long kcal) {

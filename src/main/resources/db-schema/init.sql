@@ -131,9 +131,7 @@ INSERT INTO INGREDIENT (name) VALUES
 ('Orzechy włoskie'),
 ('Suszone mięso wołowe'), -- 36
 ('Majonez'),
-('Margaryna'),
-('Orzechy włoskie'),
-('Orzechy włoskie') -- 40
+('Margaryna')
 ;
 
 
@@ -326,3 +324,49 @@ INSERT INTO QUANTITY (recipe_id, ingredient_id, ingredient_uom_id, ingredient_qu
 (9, 7, 2, 250),
 (9, 1, 4, 1),
 (9, 38, 1, 35);
+
+
+INSERT INTO RECIPE (course_id, food_category_id, recipe_name, recipe_description, prep_time, kcal) VALUES
+(2, 1,'Omlet z brokułem', 'Pożywne danie na początek dnia', '15', 600 );
+
+INSERT INTO RECIPE_STEP (recipe_id, step_number, step_description) VALUES
+(10, 1, 'Brokół pokrój w drobną kostkę.'),
+(10, 2, 'Mleko rozmieszaj z jajkami.'),
+(10, 3, 'Na oleju zeszklij posiekaną cebulę, dodaj szpinak.'),
+(10, 4, 'Dodaj masę jajeczną, smaż pod przykryciem około 5 minut.');
+
+INSERT INTO QUANTITY (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
+(10, 26, 1, 150),
+(10, 1, 4, 4),
+(10, 7, 2, 50),
+(10, 23, 2, 20),
+(10, 18, 4, 1);
+
+-- Naleśniki
+INSERT INTO RECIPE (course_id, food_category_id, recipe_name, recipe_description, prep_time, kcal) VALUES
+(2, 1,'Naleśniki', 'Uniwersalne danie nabierające różnych obliczy w zależności od zastosowanych dodatków', '25', 800 );
+
+INSERT INTO RECIPE_STEP (recipe_id, step_number, step_description) VALUES
+(11, 1, 'Rozmieszaj mleko z jajkami.'),
+(11, 2, 'Otrzymaną masę zmieszaj z mąką i opcjonalnie cukrem.'),
+(11, 3, 'Ciasto rozlej równomiernie na patelni.'),
+(11, 4, 'Smaż około 2 minuty, po czym obróć ciasto na drugę stronę.'),
+(11, 5, 'Po około 1 minucie można zdjąć naleśnik z patelni.');
+
+INSERT INTO QUANTITY (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
+(11, 1, 4, 4),
+(11, 7, 2, 200),
+(11, 29, 1, 200);
+
+-- Zupa brokułowa
+INSERT INTO RECIPE (course_id, food_category_id, recipe_name, recipe_description, prep_time, kcal) VALUES
+(1, 1,'Zupa brokułowa', 'Bardzo prosta zupa może zostać przyrządzona z wykorzystaniem dowolnych warzyw - cukinii, kalafiora czy selera', '30', 400 );
+
+INSERT INTO RECIPE_STEP (recipe_id, step_number, step_description) VALUES
+(12, 1, 'Podziel brokół na mniejsze różyczki. Warzywa pokrój w kostkę.'),
+(12, 2, 'W dużym garnku rozgrzej łyżkę masła. Dodaj cebulę. Smaż przez około 5 minut wszystko mieszając.'),
+(12, 3, 'Dodaj litr wody i kostkę bulionu. Doprowadź do wrzenia, zmniejsz ogień, a następnie gotuj na małym ogniu przez około 15 minut lub do momentu zmięknięcia warzyw. Zupę zmiksuj za pomocą blendera.');
+
+INSERT INTO QUANTITY (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
+(12, 26, 1, 1),
+(12, 8, 2, 200);

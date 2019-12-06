@@ -23,4 +23,8 @@ public class CourseService {
     public Optional<Course> getCourseById(Long id){
         return courseRepository.findById(id);
     }
+
+    public Course getCourseByName(String name){
+        return courseRepository.getCourseByName(name);
+    }
 }

@@ -2,15 +2,22 @@ package mwo.controller.rest;
 
 import mwo.dto.RecipeDto;
 import mwo.entity.Course;
+import mwo.entity.FoodCategory;
 import mwo.entity.Ingredient;
+import mwo.entity.Quantity;
 import mwo.entity.Recipe;
+import mwo.entity.RecipeStep;
+import mwo.entity.UnitOfMeasurement;
 import mwo.service.CourseService;
 import mwo.service.QuantityService;
 import mwo.service.RecipeService;
 import mwo.util.RecipeConverter;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +54,67 @@ public class RecipeController {
             }
         }
         return recipes;
+    }
+
+    @PostMapping(value = "/recipe")
+    private void addRecipe(@RequestBody RecipeDto recipeDto) {
+        Recipe recipe = new Recipe();
+        recipe.setKcal(recipeDto.getKcal());
+        recipe.setPrepTime(recipeDto.getPrepTime());
+        recipe.setRecipeName(recipeDto.getRecipeName());
+        recipe.setRecipeDescription(recipeDto.getRecipeDescription());
+
+        Course course = courseService.getCourseByName(recipeDto.getCourse());
+        if(course == null) {
+            course = new Course();
+            course.setName(recipeDto.getCourse());
+        }
+        recipe.setCourse(course);
+
+        FoodCategory foodCategory = recipeService.findFoodCategoryByName(recipeDto.getFoodCategory());
+        if(foodCategory == null) {
+            foodCategory = new FoodCategory();
+            foodCategory.setName(recipeDto.getFoodCategory());
+        }
+        recipe.setFoodCategory(foodCategory);
+
+        List<Quantity> quantityList = new ArrayList<>();
+        if(recipeDto.getQuantityDtoList() != null) {
+            recipeDto.getQuantityDtoList().forEach(quantityDto -> {
+                Quantity quantity = new Quantity();
+
+                Ingredient ingredient = recipeService.findIngredientByName(quantityDto.getIngredient());
+                if (ingredient == null) {
+                    ingredient = new Ingredient();
+                    ingredient.setName(quantityDto.getIngredient());
+                }
+
+                quantity.setIngredient(ingredient);
+                quantity.setIngredientQuantity(quantityDto.getIngredientQuantity());
+
+                UnitOfMeasurement uom = recipeService.findUnitOfMeasurementByName(quantityDto.getUnitOfMeasurement());
+                if (uom == null) {
+                    uom = new UnitOfMeasurement();
+                    uom.setName(quantityDto.getUnitOfMeasurement());
+                }
+                quantity.setUnitOfMeasurement(uom);
+                quantityList.add(quantity);
+            });
+            recipe.setQuantityList(quantityList);
+        }
+
+        if(recipeDto.getRecipeStepDtoList() != null) {
+            List<RecipeStep> recipeStepList = new ArrayList<>();
+            recipeDto.getRecipeStepDtoList().forEach(recipeStepDto -> {
+                RecipeStep recipeStep = new RecipeStep();
+                recipeStep.setStepDescription(recipeStepDto.getStepDescription());
+                recipeStep.setStepNumber(recipeStepDto.getStepNumber());
+                recipeStepList.add(recipeStep);
+            });
+            recipe.setRecipeStepList(recipeStepList);
+        }
+
+        recipeService.addNewRecipe(recipe);
     }
 
     public List<List<Recipe>> getNutritionPlansForOneDay(Long kcal, List<Ingredient> ingredients) {

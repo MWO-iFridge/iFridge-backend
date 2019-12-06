@@ -100,7 +100,7 @@
         ('Mleko'),
         ('Cebula biała'),
         ('Papryka czerwona'),
-        ('Pomidory z puszki'),
+        ('Pomidory z puszki'),  -- 10
         ('Oliwa z oliwek'),
         ('Hummus'),
         ('Ogórek'),
@@ -110,8 +110,17 @@
         ('Parmezan'),
         ('Cebula czerwona'),
         ('Fasola czerwona z puszki'),
-        ('Kukurydza z puszki'),
-        ('Ryż');
+        ('Kukurydza z puszki'), -- 20
+        ('Ryż'),
+        ('Ziemniaki'),
+        ('Olej rzepakowy'),
+        ('Pomidor'),
+        ('Jogurt naturalny'),
+        ('Brokuł'),
+        ('Dynia'),
+        ('Mięta'),
+        ('Mąka');
+        ('Pietruszka'); -- 30
 
 
     INSERT INTO UNIT_OF_MEASUREMENT (name) VALUES
@@ -221,3 +230,41 @@
         (5, 9, 1 , 100),
         (5, 10, 1, 200),
         (5, 11, 1, 10);
+
+        --zapiekanka
+        INSERT INTO RECIPE (course_id, food_category_id, recipe_name, recipe_description, prep_time, kcal) VALUES
+        (3, 2,'Zapiekanka ziemniaczana z kurczakiem', 'Szybki obiad dla całej rodziny', '85', 540 );
+
+        INSERT INTO RECIPE_STEP (recipe_id, step_number, step_description) VALUES
+        (6, 1, 'Ziemniaki umyj, obierz i ugotuj w wodzie. Całość ostudź i pokrój w grubsze plastry.'),
+        (6, 2, 'Mięso umyj, pokrój na grubsze plastry i podsmaż na złoty kolor na oleju rzepakowym.'),
+        (6, 3, 'Brokuły umyj i podziel na mniejsze różyczki. Gotuj przez 5 min. na parze lub w wodzie. Pomidora sparz i pokrój w plasterki.'),
+        (6, 4, 'Wymieszaj jajka z jogurtem'),
+        (6, 5, 'W naczyniu żaroodpornym ułóż ziemniaki, następnie mięso i warzywa. Zalej sosem. Piecz w piekarniku rozgrzanym do temperatury 180 °C przez ok. 25-30 min.');
+
+        INSERT INTO QUANTITY (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
+        (6, 22, 1, 600),
+        (6, 4, 1, 300),
+        (6, 23, 2, 20),
+        (6, 24, 4, 1),
+        (6, 26, 4, 1),
+        (6, 1, 2, 1),
+        (6, 25, 1, 250);
+
+        -- pklacki
+        INSERT INTO RECIPE (course_id, food_category_id, recipe_name, recipe_description, prep_time, kcal) VALUES
+        (3, 2,'Placuszki z dyni z sosem miętowo-jogurtowym ', 'Jesienne danie obiadowe', '45', 400 );
+
+        INSERT INTO RECIPE_STEP (recipe_id, step_number, step_description) VALUES
+        (7, 1, 'W miseczce rozmieszaj: jajka, startą dynię, cebulę, pietruszkę, mąkę, sól i pieprz.'),
+        (7, 2, 'Na patelni rozgrzej Ramę Smaż jak szef kuchni. Poczekaj aż z tłuszczu znikną bąbelki –będzie to znak, że uzyskał odpowiednią temperaturę do smażenia. Smaż placki o średnicy 4 cm przez 3 minuty z każdej strony.'),
+        (7, 3, 'W międzyczasie wymieszaj jogurt z miętą, solą i pieprzem. W międzyczasie wymieszaj jogurt z miętą, solą i pieprzem.');
+
+        INSERT INTO QUANTITY (recipe_id, ingredient_id, ingredient_uom_id, ingredient_quantity) VALUES
+        (7, 1, 1, 3),
+        (7, 27, 1, 800),
+        (7, 25, 1, 250),
+        (7, 28, 1, 100),
+        (7, 8, 4, 1),
+        (7, 29, 1, 150),
+        (7, 30, 1, 100);

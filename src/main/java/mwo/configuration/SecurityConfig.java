@@ -1,6 +1,9 @@
 package mwo.configuration;
 
+import mwo.security.CustomEntryPoint;
+import mwo.security.CustomFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,9 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import mwo.security.CustomEntryPoint;
-import mwo.security.CustomFilter;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -25,8 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
  
 	@Autowired
     private CustomEntryPoint customEntryPoint;
-	
+
 	@Autowired
+	@Qualifier("customUserDetailsService")
 	private UserDetailsService userDetailsService; //CustomDetailsService
 
 	@Autowired

@@ -1,19 +1,16 @@
 package mwo.controller.rest;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import mwo.auth.AuthRequest;
 import mwo.entity.User;
 import mwo.profile_edit.NewPasswordForm;
 import mwo.profile_edit.NewUserDTO;
 import mwo.profile_edit.RegisterResponse;
 import mwo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -24,7 +21,6 @@ public class UserController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
     public User getProfileInfo(@RequestBody String username){
-        System.out.println(userService.getUserByUsername(username).getPassword());
         return userService.getUserByUsername(username);
     }
 

@@ -76,7 +76,7 @@
 
     -- first inserts
     INSERT INTO user (username, password, name, surname, weight, height, male, diet) VALUES
-        ('root','rootpass', 'Piotr', 'Test', '85.5', '186.5', true, '2');
+        ('root','$2a$10$JQ9NnLKDlaxq0f5M1alWVOjGf/SxIHXyKQ6x9DJ4MhaxRYDN2iKLi', 'Piotr', 'Test', '85.5', '186.5', true, '2'); -- rootpass
     INSERT INTO user (username,password) VALUES
         ('user','userpass');
         

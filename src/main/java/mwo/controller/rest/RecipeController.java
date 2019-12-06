@@ -7,6 +7,7 @@ import mwo.entity.Recipe;
 import mwo.service.CourseService;
 import mwo.service.QuantityService;
 import mwo.service.RecipeService;
+import mwo.util.RecipeConverter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -113,6 +114,8 @@ public class RecipeController {
         recipeDto.setPrepTime(recipe.getPrepTime());
         recipeDto.setRecipeDescription(recipe.getRecipeDescription());
         recipeDto.setRecipeName(recipe.getRecipeName());
+        recipeDto.setQuantityDtoList(RecipeConverter.getQuantityDtoListFromQuantityList(recipe.getQuantityList()));
+        recipeDto.setRecipeStepDtoList(RecipeConverter.getRecipeStepDtoListFromRecipeStepList(recipe.getRecipeStepList()));
 
         return recipeDto;
     }

@@ -3,6 +3,7 @@ package mwo.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 public class RecipeDto implements Serializable {
@@ -14,4 +15,6 @@ public class RecipeDto implements Serializable {
     private String recipeDescription;
     private Integer prepTime;
     private Long kcal;
+    private List<RecipeStepDto> recipeStepDtoList;
+    private List<QuantityDto> quantityDtoList;
 }

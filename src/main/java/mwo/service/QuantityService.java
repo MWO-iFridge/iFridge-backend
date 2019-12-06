@@ -26,7 +26,7 @@ public class QuantityService {
     }
 
     private List<Quantity> findQuantityByRecipe(Long id) {
-        return quantityRepository.findByRecipeId(id);
+        return quantityRepository.findQuantityListByIdOfRecipe(id);
     }
 
     public List<Long> getAllIngredientsFromRecipeByRecipeId(Long id){
